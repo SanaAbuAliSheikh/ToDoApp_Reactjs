@@ -1,4 +1,4 @@
 {
-  "mongoURI": "mongodb+srv://root:ignitelabs.123@cluster0.cgn3y.mongodb.net/<dbname>test?retryWrites=true&w=majority",
+  "mongoURI": "mongodb+srv://root:ignitelabs.123@cluster0.cgn3y.mongodb.net/test?retryWrites=true&w=majority",
   "jwtSecret": "mysecrettoken"
 }
