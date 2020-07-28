@@ -59,7 +59,7 @@ export default class task extends Component {
     });
   };
 
-  handleSubmit = (e) => {
+  handleSubmit = async (e) => {
     e.preventDefault();
     try {
       const res = await axios.put(
