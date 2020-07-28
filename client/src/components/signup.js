@@ -33,9 +33,9 @@ export default class signup extends Component {
     });
   };
 
-  handleSubmit = (e) => {
+  handleSubmit = async (e) => {
     e.preventDefault();
-    try{
+    try {
       const res = await axios.post(
         "https://mernstackapptodolist.herokuapp.com/api/user",
         {
@@ -48,17 +48,17 @@ export default class signup extends Component {
             "Content-Type": "application/json",
           },
         }
-      )
-      if(res){
-          console.log(res.data.token);
-          localStorage.setItem("token", res.data.token);
-          this.setState({
-            authenticated: true,
-          });
-        }
-      } catch (err) {
-          console.log(err.response.data.msg);
-        }
+      );
+      if (res) {
+        console.log(res.data.token);
+        localStorage.setItem("token", res.data.token);
+        this.setState({
+          authenticated: true,
+        });
+      }
+    } catch (err) {
+      console.log(err.response.data.msg);
+    }
   };
   render() {
     if (this.state.authenticated) {
