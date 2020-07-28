@@ -73,13 +73,13 @@ export default class login extends Component {
         >
           <br></br>
           <Form>
-            <Form.Group as={Row} controlId="formHorizontalText">
+            <Form.Group as={Row} controlId="formHorizontalEmail">
               <Form.Label column sm={2} style={{ fontWeight: "bold" }}>
                 Email
               </Form.Label>
               <Col sm={10}>
                 <Form.Control
-                  type="text"
+                  type="Email"
                   placeholder="Enter Email"
                   value={this.state.email}
                   onChange={(e) => this.handleEmail(e)}
@@ -87,13 +87,13 @@ export default class login extends Component {
               </Col>
             </Form.Group>
 
-            <Form.Group as={Row} controlId="formHorizontalText">
+            <Form.Group as={Row} controlId="formHorizontalPassword">
               <Form.Label column sm={2} style={{ fontWeight: "bold" }}>
                 Password
               </Form.Label>
               <Col sm={10}>
                 <Form.Control
-                  type="text"
+                  type="Password"
                   placeholder="Enter Password"
                   value={this.state.password}
                   onChange={(e) => this.handlePassword(e)}

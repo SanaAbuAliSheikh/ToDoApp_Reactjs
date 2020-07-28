@@ -26,23 +26,26 @@ export default class task extends Component {
     this.getData();
   }
   getData = async () => {
-    await axios
-      .get("https://mernstackapptodolist.herokuapp.com/api/user/tasks", {
-        headers: {
-          "x-auth-token": localStorage.getItem("token"),
-        },
-      })
-      .then((res) => {
-        console.log(res.data.tasks);
-        try {
-          this.setState({
-            name: res.data.name,
-            tasks: res.data.tasks,
-          });
-        } catch (err) {
-          console.log("Invalid Credentials");
+    try {
+      const res = await axios.get(
+        "https://mernstackapptodolist.herokuapp.com/api/user/tasks",
+        {
+          headers: {
+            "x-auth-token": localStorage.getItem("token"),
+          },
         }
-      });
+      );
+      if (res) {
+        console.log(res.data.tasks);
+
+        this.setState({
+          name: res.data.name,
+          tasks: res.data.tasks,
+        });
+      }
+    } catch (err) {
+      console.log("Invalid Credentials");
+    }
   };
   handleTitle = (e) => {
     this.setState({
@@ -58,8 +61,8 @@ export default class task extends Component {
 
   handleSubmit = (e) => {
     e.preventDefault();
-    axios
-      .put(
+    try {
+      const res = await axios.put(
         "https://mernstackapptodolist.herokuapp.com/api/user/tasks",
         {
           title: this.state.title,
@@ -71,15 +74,14 @@ export default class task extends Component {
             "Content-Type": "application/json",
           },
         }
-      )
-      .then((res) => {
-        try {
-          console.log("Added Successfully!");
-          this.getData();
-        } catch (err) {
-          console.log("Invalid Credentials");
-        }
-      });
+      );
+      if (res) {
+        console.log("Added Successfully!");
+        this.getData();
+      }
+    } catch (err) {
+      console.log("Invalid Credentials");
+    }
   };
   render() {
     return (

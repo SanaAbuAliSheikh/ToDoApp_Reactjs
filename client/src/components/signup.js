@@ -35,8 +35,8 @@ export default class signup extends Component {
 
   handleSubmit = (e) => {
     e.preventDefault();
-    axios
-      .post(
+    try{
+      const res = await axios.post(
         "https://mernstackapptodolist.herokuapp.com/api/user",
         {
           name: this.state.name,
@@ -49,22 +49,16 @@ export default class signup extends Component {
           },
         }
       )
-      .then((res) => {
-        try {
+      if(res){
           console.log(res.data.token);
           localStorage.setItem("token", res.data.token);
           this.setState({
             authenticated: true,
           });
-        } catch (err) {
-          console.log(err.response.data);
-          //   const errors = err.response.data.errors;
-
-          //   if (errors) {
-          //     errors.forEach(console.log(errors.msg));
-          //   }
         }
-      });
+      } catch (err) {
+          console.log(err.response.data.msg);
+        }
   };
   render() {
     if (this.state.authenticated) {
@@ -95,13 +89,13 @@ export default class signup extends Component {
               </Col>
             </Form.Group>
 
-            <Form.Group as={Row} controlId="formHorizontalText">
+            <Form.Group as={Row} controlId="formHorizontalEmail">
               <Form.Label column sm={2} style={{ fontWeight: "bold" }}>
                 Email
               </Form.Label>
               <Col sm={10}>
                 <Form.Control
-                  type="text"
+                  type="Email"
                   placeholder="Enter Email"
                   value={this.state.email}
                   onChange={(e) => this.handleEmail(e)}
@@ -109,13 +103,13 @@ export default class signup extends Component {
               </Col>
             </Form.Group>
 
-            <Form.Group as={Row} controlId="formHorizontalText">
+            <Form.Group as={Row} controlId="formHorizontalPassword">
               <Form.Label column sm={2} style={{ fontWeight: "bold" }}>
                 Password
               </Form.Label>
               <Col sm={10}>
                 <Form.Control
-                  type="text"
+                  type="Password"
                   placeholder="Enter Password"
                   value={this.state.password}
                   onChange={(e) => this.handlePassword(e)}

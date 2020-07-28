@@ -13,8 +13,7 @@ export default class listItem extends Component {
   async handleDelete(id) {
     try {
       const res = await axios.delete(
-        //
-        `http://localhost:5000/api/user/tasks/${id}`,
+        `https://mernstackapptodolist.herokuapp.com/api/user/tasks/${id}`,
         {
           headers: {
             "x-auth-token": localStorage.getItem("token"),
