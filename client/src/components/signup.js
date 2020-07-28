@@ -37,7 +37,7 @@ export default class signup extends Component {
     e.preventDefault();
     axios
       .post(
-        "http://localhost:5000/api/user",
+        "https://mernstackapptodolist.herokuapp.com/api/user",
         {
           name: this.state.name,
           email: this.state.email,

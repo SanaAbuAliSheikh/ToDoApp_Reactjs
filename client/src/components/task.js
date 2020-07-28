@@ -27,7 +27,7 @@ export default class task extends Component {
   }
   getData = async () => {
     await axios
-      .get("http://localhost:5000/api/user/tasks", {
+      .get("https://mernstackapptodolist.herokuapp.com/api/user/tasks", {
         headers: {
           "x-auth-token": localStorage.getItem("token"),
         },
@@ -60,7 +60,7 @@ export default class task extends Component {
     e.preventDefault();
     axios
       .put(
-        "http://localhost:5000/api/user/tasks",
+        "https://mernstackapptodolist.herokuapp.com/api/user/tasks",
         {
           title: this.state.title,
           description: this.state.description,
