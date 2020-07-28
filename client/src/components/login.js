@@ -32,7 +32,7 @@ export default class login extends Component {
     e.preventDefault();
     try {
       const res = await axios.post(
-        "http://localhost:5000/api/auth",
+        "https://mernstackapptodolist.herokuapp.com/api/auth",
         {
           email: this.state.email,
           password: this.state.password,
